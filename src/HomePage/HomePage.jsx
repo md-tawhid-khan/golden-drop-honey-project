@@ -1,12 +1,14 @@
 import AboutSection from "../AboutSection/AboutSection";
 import Banner from "../Banner/Banner";
+import Feature from "../Component/Feature/Feature";
 
 
 const HomePage = () => {
     return (
-        <div>
+        <div className=" mx-auto">
             <Banner/>
             <AboutSection/>
+            <Feature/>
         </div>
     );
 };

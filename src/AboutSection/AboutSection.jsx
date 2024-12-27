@@ -10,8 +10,8 @@ const AboutSection = () => {
            <h1>
             <img src={beeImg3} alt="" />
            </h1>
-           <p className='absolute -top-4 left-0 z-[-1]'>
-            <img src={radialImg} alt="" />
+           <p className='absolute -top-7 left-0 z-[-1]'>
+            <img className='w-[800px] h-[800px] rounded-lg' src={radialImg} alt="" />
            </p>
             </div>
             {/* content section */}
