@@ -44,7 +44,7 @@ const Navbar = () => {
       </ul>
     </div>
     <div className="flex flex-row-reverse items-center gap-2">
-    <a className=" text-xl text-[#FFB700]">Golden Drops</a>
+    <h1 className="font-bold text-2xl text-[#FFB700]">Golden Drops</h1>
     <img src={LogoImg} alt="" />
     </div>
   </div>

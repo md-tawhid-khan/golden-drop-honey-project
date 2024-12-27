@@ -1,6 +1,8 @@
 import AboutSection from "../AboutSection/AboutSection";
 import Banner from "../Banner/Banner";
 import Feature from "../Component/Feature/Feature";
+import ShopSection from "../Component/Shop/ShopSection";
+
 
 
 const HomePage = () => {
@@ -9,6 +11,8 @@ const HomePage = () => {
             <Banner/>
             <AboutSection/>
             <Feature/>
+            <ShopSection/>
+       
         </div>
     );
 };
