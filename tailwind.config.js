@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       fontFamily:{
-        Lily:['Lily Script One','sans-serif']
+        Lily:['Lily Script One','sans-serif'],
+        inter:['Inter','sans-serif'],
       }
     },
   },

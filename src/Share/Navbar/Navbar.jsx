@@ -1,14 +1,16 @@
-import { NavLink } from "react-router-dom";
+
+
 import LogoImg from "../../assets/logoImg.png"
 
-const Navbar = () => {
+const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef}) => {
+   
 
     const navLink=<div className="flex gap-3">
-        <li><NavLink to='/' className={({isActive})=>isActive? 'bg-[#FFB700]':'bg-white ' }>Home</NavLink></li>
-        <li><NavLink to='/sfh' className={({isActive})=>isActive? 'bg-[#FFB700]':'bg-white ' }>About Us</NavLink></li>
-      <li><NavLink  to='/sfh4' className={({isActive})=>isActive? 'bg-[#FFB700]':'bg-white ' }>Shop</NavLink></li>
-        <li><NavLink to='/ert' className={({isActive})=>isActive? 'bg-[#FFB700]':'bg-white ' }>Blog</NavLink></li>
-        <li><NavLink to='/dgfh' className={({isActive})=>isActive? 'bg-[#FFB700]':'bg-white ' }>Contact</NavLink></li>
+        <li><button className="active:bg-[#FFB700]"  >Home</button></li>
+        <li><button onClick={handleAboutRef} className="active:bg-[#FFB700]" >About Us</button></li>
+      <li><button onClick={handleShopRef} className="active:bg-[#FFB700]" >Shop</button></li>
+        <li><button onClick={handlefeedbackRef} className="active:bg-[#FFB700]">Blog</button></li>
+        <li><button onClick={handleContactRef} className="active:bg-[#FFB700]">Contact</button></li>
     </div>
     
     return (

@@ -1,10 +1,11 @@
+import { forwardRef } from 'react';
 import beeImg3 from '../assets/beeImg3.png' 
 import beeImg4 from '../assets/beeImg4.png'
 import radialImg from '../assets/radialImg.png'
 
-const AboutSection = () => {
+const AboutSection =forwardRef((props,ref) => {
     return (
-        <section className=" grid grid-cols-2 place-items-center">
+        <section ref={ref} className=" grid grid-cols-2 place-items-center">
             {/* img section */}
             <div className='relative  px-4'>
            <h1>
@@ -25,6 +26,8 @@ const AboutSection = () => {
             
         </section>
     );
-};
+});
+
+AboutSection.displayName='AboutSection';
 
 export default AboutSection;

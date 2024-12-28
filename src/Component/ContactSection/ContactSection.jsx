@@ -1,9 +1,10 @@
+import { forwardRef } from 'react';
 import beeImg10 from '../../assets/beeImg10.png';
 import beeImg4 from '../../assets/beeImg4.png';
 
-const ContactSection = () => {
+const ContactSection = forwardRef((props,ref) => {
     return (
-        <section className="grid grid-cols-2 gap-6 p-16">
+        <section ref={ref} className="grid grid-cols-2 gap-6 p-16">
             <div>
                    <img src={beeImg10} alt="" />
             </div>
@@ -36,6 +37,8 @@ const ContactSection = () => {
             </div>
         </section>
     );
-};
+});
+
+ContactSection.displayName='ContactSection' ;
 
 export default ContactSection;

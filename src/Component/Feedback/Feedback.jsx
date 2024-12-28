@@ -8,8 +8,9 @@ import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { IoMdStarOutline } from "react-icons/io";
+import { forwardRef } from "react";
 
-const Feedback = () => {
+const Feedback =forwardRef((props, ref) => {
   // console.log(FeedbacksData)
 
   const randerStars=(rating)=>{
@@ -19,7 +20,7 @@ const Feedback = () => {
 ))
   }
   return (
-    <div className="p-16">
+    <div ref={ref} className="p-16">
       <h1 className="font-bold text-3xl text-center text-[#FFB700] my-10">
         What Our Customer Says
       </h1>
@@ -60,6 +61,8 @@ const Feedback = () => {
       </div>
     </div>
   );
-};
+});
+
+Feedback.displayName='Feedback';
 
 export default Feedback;

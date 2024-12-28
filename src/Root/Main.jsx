@@ -1,11 +1,11 @@
 import { Outlet } from "react-router-dom";
-import Navbar from "../Share/Navbar/Navbar";
 
 
 const Main = () => {
+    
     return (
-        <div className="mx-12">
-            <Navbar></Navbar>
+        <div className="font-inter mx-12">
+            
             <Outlet/>
             
         </div>
