@@ -1,6 +1,7 @@
 import { FaStar } from "react-icons/fa6";
 import FeedbacksData from "../../fakeData/Feedback";
 
+
 import "swiper/css";
 import "swiper/css/pagination";
 
@@ -18,7 +19,7 @@ const Feedback = () => {
 ))
   }
   return (
-    <div className="my-10">
+    <div className="p-16">
       <h1 className="font-bold text-3xl text-center text-[#FFB700] my-10">
         What Our Customer Says
       </h1>
