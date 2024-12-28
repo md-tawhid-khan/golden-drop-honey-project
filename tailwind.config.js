@@ -5,7 +5,11 @@ export default {
     "./src/**/*.{js,ts,jsx,tsx}",
   ],
   theme: {
-    extend: {},
+    extend: {
+      fontFamily:{
+        Lily:['Lily Script One','sans-serif']
+      }
+    },
   },
   // eslint-disable-next-line
   plugins: [require('daisyui'),],
