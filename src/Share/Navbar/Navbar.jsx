@@ -2,8 +2,11 @@
 
 import { Link } from "react-router-dom";
 import LogoImg from "../../assets/logoImg.png"
+import useAuth from "../../Custom/useAuth";
 
 const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef}) => {
+
+  const {user,logOut}=useAuth()
    
 
     const navLink=<div className="flex gap-3">
@@ -57,8 +60,21 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
     </ul>
   </div>
   <div className="navbar-end gap-2">
+    {
+    user?<div className="flex gap-2">
+   <div className="tooltip tooltip-bottom" data-tip={user?.displayName}>
+   <div className="avatar">
+  <div className="w-11 rounded-full">
+    <img src={user?.photoURL}/>
+  </div>
+</div>
+   </div>
+    <button onClick={logOut} className="btn hover:bg-[#FFB700]">Sign Out</button>
+    </div>:<div className="flex gap-2">
     <Link to='/signIn' className="btn hover:bg-[#FFB700]">Log In</Link>
     <Link to='/signUp' className="btn hover:bg-[#FFB700]">Sign Up</Link>
+    </div>
+    }
   </div>
 </div>
     );
