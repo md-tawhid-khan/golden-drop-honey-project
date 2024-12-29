@@ -1,5 +1,6 @@
 
 
+import { Link } from "react-router-dom";
 import LogoImg from "../../assets/logoImg.png"
 
 const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef}) => {
@@ -56,8 +57,8 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
     </ul>
   </div>
   <div className="navbar-end gap-2">
-    <a className="btn hover:bg-[#FFB700]">Log In</a>
-    <a className="btn hover:bg-[#FFB700]">Sign Up</a>
+    <Link to='/signIn' className="btn hover:bg-[#FFB700]">Log In</Link>
+    <Link to='/signUp' className="btn hover:bg-[#FFB700]">Sign Up</Link>
   </div>
 </div>
     );
