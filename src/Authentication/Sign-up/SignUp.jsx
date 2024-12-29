@@ -1,11 +1,13 @@
 import { useForm } from "react-hook-form";
 import useAuth from "../../Custom/useAuth";
-import axios from "axios";
+import { FaEyeSlash } from "react-icons/fa6";
+import { useState } from "react";
 
 
 const SignUp = () => {
 const {createUser,updateprofile}=useAuth()
   const {register, handleSubmit,formState:{errors}}=useForm()
+  const [showpassword,setShowpassword]=useState('')
 
 const onSubmit=async(data)=>{
    const {name, email, password}=data;
@@ -16,7 +18,11 @@ const onSubmit=async(data)=>{
  
 }
 
+
+
     return (
+      <section >
+        <div className="relative">
      <form onSubmit={handleSubmit(onSubmit)}>
       
       <div className="flex flex-col gap-3">
@@ -36,7 +42,7 @@ const onSubmit=async(data)=>{
 
       <div className="flex flex-col gap-3 mb-2">
         <label>Password</label>
-        <input className="border border-[#FFB700]" type="password" placeholder="give password" 
+        <input className="border border-[#FFB700]" type={showpassword?"text":"password"} placeholder="give password" 
         {...register('password', {maxLength:{
           value:15,
           message:'password length not more than 15 character'
@@ -55,10 +61,13 @@ const onSubmit=async(data)=>{
         }
       </div>
       
-      <input className="border border-[#FFB700] rounded-md hover:bg-[#FFB700]" placeholder="submit" type="submit" />
-
-      
+      <input className="border border-[#FFB700] rounded-md hover:bg-[#FFB700]" placeholder="submit" type="submit" />     
      </form>
+     <div className="absolute bottom-9 right-4 ">
+        <button onClick={()=>setShowpassword(!showpassword)}><FaEyeSlash /></button>      
+     </div>
+     </div>
+        </section>
     );
 };
 
