@@ -3,14 +3,15 @@
 import { Link } from "react-router-dom";
 import LogoImg from "../../assets/logoImg.png"
 import useAuth from "../../Custom/useAuth";
+import { FaCartShopping } from "react-icons/fa6";
 
-const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef}) => {
+const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef,currentNumber,cartProducts}) => {
 
   const {user,logOut}=useAuth()
    
 
     const navLink=<div className="flex gap-3">
-        <li><button className="active:bg-[#FFB700]"  >Home</button></li>
+        <li><button className="active:bg-[#FFB700]" >Home</button></li>
         <li><button onClick={handleAboutRef} className="active:bg-[#FFB700]" >About Us</button></li>
       <li><button onClick={handleShopRef} className="active:bg-[#FFB700]" >Shop</button></li>
         <li><button onClick={handlefeedbackRef} className="active:bg-[#FFB700]">Blog</button></li>
@@ -54,10 +55,33 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
     <img src={LogoImg} alt="" />
     </div>
   </div>
-  <div className="navbar-center hidden lg:flex">
+  <div className="navbar-center hidden lg:flex gap-52">
     <ul className="menu menu-horizontal px-1">
       {navLink}
     </ul>
+    <div className="indicator ">
+  <span className="indicator-item badge badge-warning">{currentNumber}</span>
+  <div className="dropdown dropdown-end dropdown-bottom">
+  <div tabIndex={0} className="btn m-1"><FaCartShopping/>
+  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52  p-2 shadow">
+    <li>
+      {
+        cartProducts.map(cartProduct=><div  key={cartProduct.id}>
+          <h1>productName : {cartProduct.productName}</h1>
+          <h3>price:  {cartProduct.price} </h3>
+        </div>)
+      }
+    </li> 
+    <div>
+      <h1>total price : {
+        cartProducts.reduce((totalPrice,products)=>totalPrice+products.price,0).toFixed(2)
+        }</h1>
+      </div> 
+  </ul>
+  </div>
+  </div>
+  
+</div>
   </div>
   <div className="navbar-end gap-2">
     {

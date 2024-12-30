@@ -6,11 +6,14 @@ import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaCartShopping } from "react-icons/fa6";
 
-const ShopSection = forwardRef((props, ref1) => {
+const ShopSection = forwardRef((props,ref) => {
+  const {refs,clickCount}=props;
+  const {shopRef,countRef}=refs
+
   const [products, setProducts] = useState(data);
 
   return (
-    <section className="max-h-screen" ref={ref1}>
+    <section className="max-h-screen" ref={shopRef}>
       <h1 className="font-bold text-4xl text-center text-[#FFB700] mb-16">Shop Now</h1>
       <div>
         <Swiper
@@ -32,7 +35,7 @@ const ShopSection = forwardRef((props, ref1) => {
                 <p>If a dog chews shoes whose shoes does he choose?</p>
                 <div className="card-actions items-center justify-between">
                   <button className="border border-black rounded-md px-9 hover:bg-[#FFB700]">Buy Now</button>
-                  <button className="flex items-center justify-end">
+                  <button ref={countRef} onClick={()=>clickCount(product)} className="flex items-center justify-end">
                     <FaCartShopping className="text-xl hover:text-2xl" />
                   </button>
                 </div>
