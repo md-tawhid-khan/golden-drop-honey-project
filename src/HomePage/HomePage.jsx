@@ -8,6 +8,7 @@ import Footer from "../Component/FooterSection/Footer";
 import Offersection from "../Component/OfferSection/Offersection";
 import ShopSection from "../Component/Shop/ShopSection";
 import Navbar from "../Share/Navbar/Navbar";
+import toast from "react-hot-toast";
 
 
 const HomePage = () => {
@@ -19,15 +20,16 @@ const HomePage = () => {
     const feedbackRef=useRef(null)
     const contactRef=useRef(null)
 
-
     const clickCount =(product)=>{
         setCurrentNumber((prevCount)=>prevCount+1)
      setCartProducts((prevCartProduct)=>{
         const updatecart=[...prevCartProduct,product]
-        localStorage.setItem("cartProducts",JSON.stringify(updatecart))
+        localStorage.setItem("cartProducts",JSON.stringify(updatecart))    
         return updatecart
     }
-)}
+)
+ toast.success('Successfully add to cart ')
+}
 useEffect(()=>{
   try{
     const getLocalStorageCartProduct=JSON.parse(localStorage.getItem('cartProducts')  )
@@ -38,6 +40,13 @@ useEffect(()=>{
     console.log(error.message)
   }
 },[])
+
+const handleDeleteFromCart=(id)=>{
+      const getCartProducts=JSON.parse(localStorage.getItem("cartProducts"))
+      const updateCartProduct=getCartProducts.filter(product=>id !== product.id)
+      localStorage.setItem('cartProducts',JSON.stringify(updateCartProduct))      
+      console.log('updateCartProduct',updateCartProduct)
+}
 
     const handleShopRef=()=>{
         if(shopRef.current){
@@ -76,7 +85,8 @@ useEffect(()=>{
             handlefeedbackRef={handlefeedbackRef}
             handleContactRef={handleContactRef}
             currentNumber={currentNumber}
-            cartProducts={cartProducts}/>
+            cartProducts={cartProducts}
+            handleDeleteFromCart={handleDeleteFromCart}/>
             <Banner/>
             <AboutSection ref={aboutRef}/>
             <Feature/>

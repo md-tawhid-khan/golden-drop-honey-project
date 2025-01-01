@@ -4,11 +4,31 @@ import { Link } from "react-router-dom";
 import LogoImg from "../../assets/logoImg.png"
 import useAuth from "../../Custom/useAuth";
 import { FaCartShopping } from "react-icons/fa6";
+import { RxCross2 } from "react-icons/rx";
+import { useEffect, useState } from "react";
 
-const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef,currentNumber,cartProducts}) => {
+
+const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef,currentNumber,cartProducts,handleDeleteFromCart}) => {
 
   const {user,logOut}=useAuth()
+  const [count, setCount]=useState([])
    
+  // --------------------
+  useEffect(()=>{
+    if(cartProducts.length>0){
+      const productCount=cartProducts.reduce((acc,product)=>{
+       acc[product.id]=(acc[product.id]||0)+1;
+       return acc
+      },{})
+
+      console.log(productCount)
+      setCount(Object.values(productCount))      
+     } 
+  },{})
+
+  console.log(count) 
+        
+  // -----------------------
 
     const navLink=<div className="flex gap-3">
         <li><button className="active:bg-[#FFB700]" >Home</button></li>
@@ -59,16 +79,23 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
     <ul className="menu menu-horizontal px-1">
       {navLink}
     </ul>
+    {/* cart button section */}
     <div className="indicator ">
   <span className="indicator-item badge badge-warning">{currentNumber}</span>
   <div className="dropdown dropdown-end dropdown-bottom">
-  <div tabIndex={0} className="btn m-1"><FaCartShopping/>
-  <ul tabIndex={0} className="dropdown-content menu bg-base-100 rounded-box z-[1] w-52  p-2 shadow">
-    <li>
+  <div tabIndex={0} className="p-4 text-[#FFB700] m-1"><FaCartShopping/>
+  {
+    currentNumber==0 ? <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-[1]  flex flex-col gap-6  p-2 shadow">
+      <h1>you do not add any product for buying</h1>
+    </ul>:
+    <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-[1]  flex flex-col gap-6  p-2 shadow">
+    <li className="flex flex-col gap-5">
       {
-        cartProducts.map(cartProduct=><div  key={cartProduct.id}>
-          <h1>productName : {cartProduct.productName}</h1>
+        cartProducts.map((cartProduct,index)=><div className="flex items-center justify-around gap-6"   key={index}>
+          <h1>productName: {cartProduct.productName}</h1>
+           <h1>productCount:0</h1>
           <h3>price:  {cartProduct.price} </h3>
+          <button className="text-red-600" onClick={()=>handleDeleteFromCart(cartProduct.id)}><RxCross2/></button>       
         </div>)
       }
     </li> 
@@ -77,12 +104,19 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
         cartProducts.reduce((totalPrice,products)=>totalPrice+products.price,0).toFixed(2)
         }</h1>
       </div> 
+      <div>
+        <button className="btn hover:bg-[#FFB700]">Buy Now</button>
+      </div>
   </ul>
+   
+  }
+  
   </div>
   </div>
   
 </div>
   </div>
+  {/* nav ber log in section */}
   <div className="navbar-end gap-2">
     {
     user?<div className="flex gap-2">
@@ -100,6 +134,7 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
     </div>
     }
   </div>
+  
 </div>
     );
 };
