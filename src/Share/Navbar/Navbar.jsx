@@ -11,22 +11,28 @@ import { useEffect, useState } from "react";
 const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef,currentNumber,cartProducts,handleDeleteFromCart}) => {
 
   const {user,logOut}=useAuth()
-  const [count, setCount]=useState([])
+  const [counts, setCounts]=useState([])
    
   // --------------------
   useEffect(()=>{
     if(cartProducts.length>0){
       const productCount=cartProducts.reduce((acc,product)=>{
-       acc[product.id]=(acc[product.id]||0)+1;
+        if(!acc[product.id]){
+          acc[product.id]={...product, quantity:1};
+        }
+        else{
+          acc[product.id].quantity += 1;
+        }
+       
        return acc
       },{})
 
       console.log(productCount)
-      setCount(Object.values(productCount))      
+      setCounts(Object.values(productCount) )      
      } 
-  },{})
+  },[cartProducts])
 
-  console.log(count) 
+  console.log(counts) 
         
   // -----------------------
 
@@ -34,7 +40,7 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
         <li><button className="active:bg-[#FFB700]" >Home</button></li>
         <li><button onClick={handleAboutRef} className="active:bg-[#FFB700]" >About Us</button></li>
       <li><button onClick={handleShopRef} className="active:bg-[#FFB700]" >Shop</button></li>
-        <li><button onClick={handlefeedbackRef} className="active:bg-[#FFB700]">Blog</button></li>
+        <li ><button onClick={handlefeedbackRef} className="active:bg-[#FFB700]">Blog</button></li>
         <li><button onClick={handleContactRef} className="active:bg-[#FFB700]">Contact</button></li>
     </div>
     
@@ -86,14 +92,14 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
   <div tabIndex={0} className="p-4 text-[#FFB700] m-1"><FaCartShopping/>
   {
     currentNumber==0 ? <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-[1]  flex flex-col gap-6  p-2 shadow">
-      <h1>you do not add any product for buying</h1>
+      <h1>No products in the cart</h1>
     </ul>:
     <ul tabIndex={0} className="dropdown-content bg-base-100 rounded-box z-[1]  flex flex-col gap-6  p-2 shadow">
     <li className="flex flex-col gap-5">
       {
-        cartProducts.map((cartProduct,index)=><div className="flex items-center justify-around gap-6"   key={index}>
+        counts.map((cartProduct,index)=><div className="flex items-center justify-around gap-6"   key={index}>
           <h1>productName: {cartProduct.productName}</h1>
-           <h1>productCount:0</h1>
+           <h1>productCount:{cartProduct.quantity}</h1>
           <h3>price:  {cartProduct.price} </h3>
           <button className="text-red-600" onClick={()=>handleDeleteFromCart(cartProduct.id)}><RxCross2/></button>       
         </div>)
