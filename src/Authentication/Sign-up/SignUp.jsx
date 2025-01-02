@@ -59,7 +59,7 @@ const SignUp = () => {
         <img src={signUpImg} alt="" />
       </div>
       <div >
-        <h1 className="font-Lily font-medium text-4xl text-[#FFB700] text-center mb-7">Sign Up</h1>
+        <h1 className="font-Lily font-medium text-4xl text-[#FFB700] text-center mb-7 ">Sign Up</h1>
         <div className="relative">
           <form onSubmit={handleSubmit(onSubmit)}>
             <div className="flex flex-col gap-3">
@@ -143,7 +143,7 @@ const SignUp = () => {
 
             <input
               disabled={loading}
-              className="border border-[#FFB700] rounded-md p-1 hover:bg-[#FFB700]"
+              className="border border-[#FFB700] rounded-md p-1 hover:bg-[#FFB700] w-full"
               placeholder="submit"
               type="submit"
             />
