@@ -4,6 +4,7 @@ import Main from "../Root/Main";
 import HomePage from "../HomePage/HomePage";
 import SignUp from "../Authentication/Sign-up/SignUp";
 import SignIn from "../Authentication/SignIn/SignIn";
+import CheckOutForm from "../CheckOutForm/CheckOutForm";
 
  const router=createBrowserRouter([
    {
@@ -15,6 +16,10 @@ import SignIn from "../Authentication/SignIn/SignIn";
             element:<HomePage/>
         }
     ]
+   },
+   {
+    path:'/checkout',
+    element:<CheckOutForm/>
    },
    {
     path:'/signUp',
