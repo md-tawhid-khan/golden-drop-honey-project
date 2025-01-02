@@ -1,6 +1,4 @@
-
-
-import { Link } from "react-router-dom";
+import { Link, useNavigate,   } from "react-router-dom";
 import LogoImg from "../../assets/logoImg.png"
 import useAuth from "../../Custom/useAuth";
 import { FaCartShopping } from "react-icons/fa6";
@@ -12,7 +10,15 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
 
   const {user,logOut}=useAuth()
   const [counts, setCounts]=useState([])
-   
+  const navigate=useNavigate()
+  
+// ------------------- here cart product comes from localStorage ---------------
+  // console.log(cartProducts)
+  const handleCartBuyButton=(cartProducts)=>{
+    console.log('buy all product from cart')
+    navigate('/checkout2',)
+    console.log('cart products :',cartProducts)
+  }
   // --------------------
   useEffect(()=>{
     if(cartProducts.length>0){
@@ -27,12 +33,12 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
        return acc
       },{})
 
-      console.log(productCount)
+      // console.log(productCount)
       setCounts(Object.values(productCount) )      
      } 
   },[cartProducts])
 
-  console.log(counts) 
+  // console.log(counts) 
         
   // -----------------------
 
@@ -111,7 +117,7 @@ const Navbar = ({handleShopRef,handleAboutRef,handlefeedbackRef,handleContactRef
         }</h1>
       </div> 
       <div>
-        <button className="btn hover:bg-[#FFB700]">Buy Now</button>
+        <button onClick={()=>handleCartBuyButton(cartProducts)}  className="btn hover:bg-[#FFB700] w-full">Buy Now</button>
       </div>
   </ul>
    

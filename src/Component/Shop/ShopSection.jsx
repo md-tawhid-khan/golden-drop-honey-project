@@ -5,12 +5,12 @@ import 'swiper/css/pagination';
 import { Pagination } from 'swiper/modules';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { FaCartShopping } from "react-icons/fa6";
-import { Link, useNavigate } from "react-router-dom";
+import {  useNavigate } from "react-router-dom";
 
 
 const ShopSection = forwardRef((props,ref) => {
   const {refs,clickCount}=props;
-  const {shopRef,countRef}=refs
+  const {shopRef,countRef}=refs ;
 
   const [products, setProducts] = useState(data);
   const navigate=useNavigate()

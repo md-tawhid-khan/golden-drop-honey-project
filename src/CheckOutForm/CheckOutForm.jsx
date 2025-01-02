@@ -12,7 +12,7 @@ const CheckOutForm = () => {
         formState: { errors },
       } = useForm()
 const location=useLocation()
-const product=location.state.product;
+const product=location?.state?.product ;
 const [subTotalPrice, setSubtotalPrice]=useState(product.price)
 
     const onSubmit=(data)=>{

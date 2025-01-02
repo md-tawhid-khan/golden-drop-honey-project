@@ -5,6 +5,7 @@ import HomePage from "../HomePage/HomePage";
 import SignUp from "../Authentication/Sign-up/SignUp";
 import SignIn from "../Authentication/SignIn/SignIn";
 import CheckOutForm from "../CheckOutForm/CheckOutForm";
+import CheckOutFormTwo from "../CheckOutForm/CheckOutFormTwo";
 
  const router=createBrowserRouter([
    {
@@ -20,6 +21,10 @@ import CheckOutForm from "../CheckOutForm/CheckOutForm";
    {
     path:'/checkout',
     element:<CheckOutForm/>
+   },
+   {
+    path:'/checkout2',
+    element:<CheckOutFormTwo/>
    },
    {
     path:'/signUp',
